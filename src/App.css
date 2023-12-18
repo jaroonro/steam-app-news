@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --gpStoreDarkGrey: #2A475E;
+  --gpStoreDarkerGrey: #1B2838;
+  
+}
+.text{
+  padding-top: 10px;
+  line-height: 16px;
+  float: left;
+  color: #1a9fff;
+  text-transform: uppercase;
+  font-size: 24px;
+  font-family: "Motiva Sans", "Twemoji", "Noto Sans", Helvetica, sans-serif;
+  font-weight: 550;
+  text-transform: uppercase;
+  margin: auto auto;
+}
+.App{
+  background-image: linear-gradient(180deg, var(--gpStoreDarkGrey) 0%, var(--gpStoreDarkerGrey) 80%);
+  height: 100vh;
+}
+.App-header {
+  background: #171d25;
+  background-position: center top;
+  font-family: "Motiva Sans", Sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  height: 120px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  float: left;
+  padding-top: 30px;
+  margin-right: 40px;
+  width: 176px;
+  height: 44px;
+}
+
+.content {
+  max-width: 940px;
+  width:100vw;
+  height: 90px;
+}
+.headt{
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
+.Canvas {
+  top: 150px;
+  left:calc(50vw);
+  transform: translate(-50%, 0%);
+}
