@@ -47,7 +47,7 @@ class SteamUpdateChart extends Component {
 			<CanvasJSChart options = {options}
 				/* onRef={ref => this.chart = ref} */
 			/>
-			<p className='text-white'>**click each point to get open news</p>
+			<p className='text-white'>**click each point to open news</p>
 			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</div>
 		);
