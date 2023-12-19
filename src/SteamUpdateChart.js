@@ -29,17 +29,25 @@ class SteamUpdateChart extends Component {
 				prefix: "",
 				interval: 1
 			},
+			
 			data: [{
 				type: "line",
 				toolTipContent: "Title: {title}<br/> Release Date: {date}",
+				click: function (e) {
+                    if (e.dataPoint && e.dataPoint.url) {
+                        window.open(e.dataPoint.url, '_blank', 'noopener,noreferrer');
+                    }
+                },
 				dataPoints: points
 			}]
 		}
+		
 		return (
 		<div>
 			<CanvasJSChart options = {options}
 				/* onRef={ref => this.chart = ref} */
 			/>
+			<p className='text-white'>**click each point to get open news</p>
 			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
 		</div>
 		);

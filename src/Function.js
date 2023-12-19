@@ -11,8 +11,9 @@ export async function drawGraph(appId,setPoints) {
         const year = date.getFullYear();
         const month = date.getMonth() + 1; // Months are zero-based, so add 1
         const day = date.getDate();
+        const url = news[i].url;
 
-        newpoints.push({x: news.length-i-1, y:daydif ,date:month+"/"+day+"/"+year,title:news[i].title});
+        newpoints.push({x: news.length-i-1, y:daydif, date:month+"/"+day+"/"+year, title:news[i].title, url:url});
         console.log(newpoints);
         
         }
