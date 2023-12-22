@@ -26,20 +26,43 @@ export async function drawGraph(appId,setPoints) {
   }
   
 async function getData(appId) {
-const apiUrl = `https://steam-news-api.vercel.app/api/news?appId=${appId}`;
+    const apiUrl = `https://steam-news-api.vercel.app/api/news?appId=${appId}`;
 
-try {
-    console.log("working");
-    const response = await fetch(apiUrl);
+    try {
+        const response = await fetch(apiUrl);
 
-    if (!response.ok) {
-    throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        if (!response.ok) {
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+        return null;
     }
-
-    const data = await response.json();
-    return data;
-} catch (error) {
-    console.error(error);
-    return null;
 }
+
+export async function getOptions(text){
+    const apiUrl = `https://steam-news-api.vercel.app/api/Search?text=${text}`;
+    // const apiUrl = `https://steamcommunity.com/actions/SearchApps/{text}/`;
+    var  data =[];
+    try {
+        console.log("working");
+        const response = await fetch(apiUrl);
+    
+        if (!response.ok) {
+        throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+    
+        data = await response.json();
+    } catch (error) {
+        console.error(error);
+    }
+    console.log(data[0]);
+    const options=[];
+    for(let i=0;i<Math.min(data.length,10);i++){
+        options.push({label:data[i].name, appId:data[i].appid})
+    }
+    return options;
 }

@@ -1,18 +1,33 @@
 import './App.css';
-import { drawGraph } from './Function';
+import { drawGraph, getOptions } from './Function';
 import SteamUpdateChart from './SteamUpdateChart';
 import { useState, useEffect } from 'react';
-
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 
 function App() {
   const [chart, setChart] = useState(null);
   const [points, setPoints] = useState([]);
-  const handleKeyDown = (event)=>{
-    const appId = document.querySelector('.App').lastChild.firstChild.value;
+  const handleKeyDown = async(event)=>{
       if(event.key=='Enter'){
-      UpdateChart(appId,setChart)
-    }
+        const app = options.filter((option)=>option.label==text);
+        console.log(text);console.log(app);
+        console.log(app[0].appId);
+        UpdateChart(app[0].appId,setChart)
+      }else{
+        try {
+          const newOptions = await getOptions(text);
+          console.log(newOptions); // Log the newOptions to check its type
+          setOptions(newOptions);
+        } catch (error) {
+          console.error('Error fetching options:', error);
+          // Handle the error appropriately
+        }
+      }
   }
+  const [text,setText] = useState("");
+  const [options,setOptions] = useState([]);
+  
   useEffect(() => {
     // This effect will be triggered whenever points change
     if (points.length > 0) {
@@ -45,7 +60,24 @@ function App() {
       </div>
 
       <div className="App-body flex flex-col items-center pt-10 relative">
-        <input type="number" className="top-20 w-80 h-8 border border-gray-300 rounded-md" placeholder="Give me steam app id" onKeyDown={handleKeyDown}></input>
+        <Autocomplete
+          className="top-20 w-80 h-fit border border-gray-300 rounded-md bg-white"
+          id="free-solo-demo"
+          freeSolo
+          options={options}
+          onChange={(event, newValue) => {
+            if (newValue) {
+              setText(newValue.label);
+            } else {
+              setText('');
+            }
+          }}
+          renderInput={(params) => <TextField {...params} label="Give me App name" value={text} placeholder="Give me app name" onKeyDown={handleKeyDown} onClick={(e) => {
+            setText(e.target.value);}} onChange = {(e) => {
+            setText(e.target.value);
+         }}/>}
+          
+        />
         <div  className="Canvas absolute w-1/2 h-auto ">{chart}</div>
 
       </div>
