@@ -61,7 +61,7 @@ function App() {
 
       <div className="App-body flex flex-col items-center pt-10 relative">
         <Autocomplete
-          className="top-20 w-80 h-fit border border-gray-300 rounded-md bg-white"
+          className="top-20 w-96 h-fit border border-gray-300 rounded-md bg-white"
           id="free-solo-demo"
           freeSolo
           options={options}
@@ -72,7 +72,7 @@ function App() {
               setText('');
             }
           }}
-          renderInput={(params) => <TextField {...params} label="Give me App name" value={text} placeholder="Give me app name" onKeyDown={handleKeyDown} onClick={(e) => {
+          renderInput={(params) => <TextField {...params} value={text} placeholder="Give me app name" onKeyDown={handleKeyDown} onClick={(e) => {
             setText(e.target.value);}} onChange = {(e) => {
             setText(e.target.value);
          }}/>}
