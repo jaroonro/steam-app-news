@@ -13,12 +13,13 @@ class SteamUpdateChart extends Component {
 	
 	render() {
 		const {points} = this.props;
+		const length = points.length;
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
 			theme: "dark1", // "light1", "dark1", "dark2"
 			title:{
-				text: "Last 30 news"
+				text: `Last ${length} news`
 			},
 			axisY: {
 				title: "Period",
