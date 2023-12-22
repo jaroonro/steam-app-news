@@ -10,13 +10,11 @@ function App() {
   const [points, setPoints] = useState([]);
   const handleKeyDown = async(event)=>{
       if(event.key=='Enter'){
-        const app = options.filter((option)=>option.label==text);
-        console.log(text);console.log(app);
-        console.log(app[0].appId);
+        const app = options.filter((option)=>option.label==text.trim());
         UpdateChart(app[0].appId,setChart)
       }else{
         try {
-          const newOptions = await getOptions(text);
+          const newOptions = await getOptions(text.trim());
           console.log(newOptions); // Log the newOptions to check its type
           setOptions(newOptions);
         } catch (error) {
